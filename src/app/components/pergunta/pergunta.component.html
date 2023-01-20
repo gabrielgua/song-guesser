@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="div" *ngIf="!jogando">
+        <p>Você acertou {{index}} de {{perguntas.length}}.</p>
+        <p *ngIf="perdeu">Fail!</p>
+        <p *ngIf="ganhou">God Gamer!</p>
+        <button (click)="recomecar()">Play again?</button>
+    </div>
+
+
+    <div class="perguntas" *ngIf="jogando">
+        <form *ngIf="perguntas.length">
+            <h1>{{pergunta.musica.nome.toUpperCase()}}</h1>
+
+            <div class="alternativas" *ngFor="let alternativa of pergunta.alternativas">
+                <input [formControl]="respostaInput" type="radio" name="alternativa" [value]="alternativa.id" [id]="+alternativa.id+'_'+pergunta.musica.id">
+                <label [for]="+alternativa.id+'_'+pergunta.musica.id">{{alternativa.nome}}</label>
+            </div>
+        </form>
+        <button (click)="responder()" *ngIf="!isUltima()">Próxima</button>
+        
+    </div>
+</div>
