@@ -19,11 +19,15 @@ export class PerguntaComponent implements OnInit{
   perguntas: Pergunta[] = [];
   pergunta = new Pergunta();
   index: number = 0;
+  respostaCerta: boolean = false;
+  resposta: any;
 
   jogo = {
     acertos: 0,
     jogando: false,
     ganhador: false,
+    perdedor: false,
+    respondendo: false,
   }
 
   respostaInput = new FormControl(null, [Validators.required]);
@@ -36,6 +40,7 @@ export class PerguntaComponent implements OnInit{
 
   ngOnInit(): void {
     this.jogo.jogando = true;
+    this.audioService.init();
     this.getPerguntas();
   }
 
@@ -57,6 +62,20 @@ export class PerguntaComponent implements OnInit{
   selectPergunta(index: number) {
     this.pergunta = this.perguntas[index];
     this.audioService.playNext(this.pergunta.musica.diretorio);
+    this.jogo.respondendo = true;
+  }
+
+  getResposta(alternativaId: number) {
+    this.pergunta.alternativas.forEach((alternativa: { id: number; }) => {
+      if (alternativa.id == alternativaId) {
+        this.resposta = alternativa;
+      }
+    });
+  }
+
+
+  isResposta(alternativa: any) {
+    return this.pergunta.musica.id == alternativa.musicaId;
   }
 
   handleClick() {
@@ -68,7 +87,7 @@ export class PerguntaComponent implements OnInit{
   }
 
   setVolume(event: Event) {
-    this.audioService.setVolume(event);
+    this.audioService.setVolume(event);    
   }
 
   getDefaultVolume() {
@@ -89,11 +108,13 @@ export class PerguntaComponent implements OnInit{
         .then((isCorreta: Boolean) => {
           if (isCorreta) {
             this.acertou();
+            this.getResposta(this.respostaInput.value!);
           } else {
             this.errou();
+            this.getResposta(this.respostaInput.value!);
+            this.respostaInput.reset(); 
           }
 
-          this.respostaInput.reset(); 
         }).catch((error: any) => {
           console.log('Erro ao tentar responder!');
         })
@@ -102,24 +123,28 @@ export class PerguntaComponent implements OnInit{
   
   nextPergunta() {
     this.index++;
+    this.respostaInput.reset(); 
     if (this.index < this.perguntas.length) {
+      this.respostaCerta = false;
       this.selectPergunta(this.index);
     }
   }
     
   errou() {
     this.jogo.jogando = false;
-    this.jogo.ganhador = false;    
+    this.jogo.perdedor = true;  
+    this.jogo.respondendo = false; 
   }
 
   acertou() {
-    this.nextPergunta();
+    this.respostaCerta = true;
+    this.jogo.respondendo = false;
+    this.jogo.acertos++;
     this.checarGanhador();
   }
 
   checarGanhador() {
-    var acertos = this.jogo.acertos++;
-    if (acertos === this.perguntas.length) {
+    if (this.jogo.acertos === this.perguntas.length) {
       this.jogo.jogando = false;
       this.jogo.ganhador = true;
     }
@@ -133,6 +158,7 @@ export class PerguntaComponent implements OnInit{
   isRespostaValid(): boolean {
     return this.respostaInput.valid;
   }
+
 }
 
 

@@ -12,3 +12,32 @@ body {
     font-family: 'Perpetua';
     text-transform: uppercase;
 }
+
+h1, h2, h3, h4, h5 {
+    margin: 0;
+}
+
+.btn {
+    border: none;
+    border-radius: 50%;
+    font-family: 'Perpetua';
+    text-transform: uppercase;
+    transition: .2s;
+    font-size: medium;
+}
+
+.btn:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: .1s;
+}
+
+.btn:active {
+    background-color: rgb(211, 211, 211);
+    transform: scale(.95);
+}
+
+.btn-medium {
+    width: 5rem;
+    height: 5rem;
+}

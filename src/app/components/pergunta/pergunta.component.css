@@ -3,15 +3,18 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    padding: 2rem;
     gap: 3rem;
-    padding-top: 15rem;
+    width: 25rem;
+    margin: auto;
 }
 
 .controls {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 3rem;
+    gap: 3rem
 }
 
 .volume-slider {
@@ -22,36 +25,71 @@
 
 .range {
     width: 5rem;
-    height: .5rem;
-    -webkit-appearance: none;
+    height: .25rem;
+    appearance: none;
     background-color: rgb(41, 41, 41);
     outline: none;
     border-radius: 1rem;
     cursor: pointer;
+    position: relative;
 }
 
 .range::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 1.25rem;
-    height: 1.25rem;
-    background-color: black;
-    border-radius: 50%;
+    width: 1rem;
+    height: 1rem;
     cursor: pointer;
-    border: 2px solid whitesmoke;
-    z-index: 3;
+    z-index: 999;
     position: relative;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 50%;
 }
 
-.progress {
-    height: .5rem;
-    border-radius: 1rem;
+.thumb {
     position: absolute;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
     top: 50%;
-    transform: translateY(-50%);
-    left: 3px;
-    background-color: white;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 2;
+    background-color: black;
+    border: 1px solid white;
+    pointer-events: none;
+}
 
+.bar {
+    width: 100%;
+    height: .25rem;
+    background-color: transparent;
+    position: absolute;
+    z-index: 1;
+    top: 2px;
+    left: 2px;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.bar .progress {
+    display: block;
+    width: 50%;
+    height: 100%;
+    background-color: crimson;
+
+}
+
+.resposta {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.resposta > p {
+    font-size: large;
 }
 
 .perguntas {
@@ -59,10 +97,108 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border: 1px solid white;
+    padding: 2rem;
+    gap: 1.5rem;
+    min-width: 90%;
 }
 
+.perguntas > form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.alternativas {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: .5rem;
+}
+
+.alternativa {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    border: 1px solid white;
+    border-radius: 1.5rem;
+    padding: .75rem;
+    background-color: transparent;
+    transition: .25s;
+}
+
+.alternativa:hover {
+    background-color: crimson;
+    transition: .1s;
+}
+
+.alternativa > label:hover {
+    cursor: pointer;
+}
+
+.alternativa > input {
+    appearance: none;
+    border-radius: 50%;
+    background-color: whitesmoke;
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
+    transition: .2s;
+}
+
+.alternativa > input:checked {
+    background-color: crimson;
+    border: 2px solid whitesmoke;
+    transition: .2s;
+}
+
+.alternativa > input:hover {
+    cursor: pointer;
+}
+
+.alternativa-resposta {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    border: 1px solid white;
+    border-radius: 1.5rem;
+    padding: .75rem;
+    background-color: transparent;
+}
+
+.alternativa-resposta > input {
+    appearance: none;
+    border-radius: 50%;
+    background-color: whitesmoke;
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
+    transition: .2s;
+}
+
+.errado {
+    background-color: crimson;
+}
+
+.errado > input:checked {
+    border: 2px solid whitesmoke;
+    background-color: crimson;
+}
+
+.certo {
+    background-color: rgb(0, 139, 116);
+}
+
+.certo > input:checked {
+    border: 2px solid whitesmoke;
+    background-color: rgb(0, 139, 116);
+}
+
+
+
 .separator {
-    width: 30%;
+    width: 100%;
     height: auto;
 }
 
@@ -71,23 +207,8 @@
 }
 
 .btn-play-pause {
-    border: none;
     height: 10rem;
     width: 10rem;
-    border-radius: 50%;
-    font-family: 'Perpetua';
     font-size: xx-large;
-    text-transform: uppercase;
-    transition: .2s;
 }
 
-.btn-play-pause:hover {
-    cursor: pointer;
-    transform: scale(1.05);
-    transition: .1s;
-}
-
-.btn-play-pause:active {
-    background-color: rgb(211, 211, 211);
-    transform: scale(.95);
-}

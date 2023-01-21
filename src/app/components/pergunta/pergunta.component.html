@@ -1,35 +1,53 @@
 <div class="container">
-    <div class="div" *ngIf="!jogo.jogando">
-        <p>Você acertou {{index}} de {{perguntas.length}}.</p>
-        <p *ngIf="!jogo.ganhador">Fail!</p>
-        <p *ngIf="jogo.ganhador">God Gamer!</p>
-        <button (click)="recomecar()">Play again?</button>
-    </div>
-
     <div class="controls">
-        <button (click)="handleClick()" class="btn-play-pause">
-            <span *ngIf="!isMusicaTocando()">Play</span>
-            <span *ngIf="isMusicaTocando()">Pause</span>
+        <button (click)="handleClick()" class="btn btn-play-pause">
+            <div *ngIf="isMusicaTocando(); then pause else play"></div>
+            <ng-template #play>Play</ng-template>
+            <ng-template #pause>Pause</ng-template>
         </button>
         <div class="volume-slider">
             <input class="range" type="range" min="0" max="1" step=".05" [value]="getDefaultVolume()" (input)="setVolume($event)">
-            <div class="progress" [style.width.%]="getVolume()"></div>
+            <div class="bar">
+                <div class="progress" [style.width.%]="getVolume()"></div>
+            </div>
         </div>
     </div>
-    
 
-    
-    <div class="perguntas" *ngIf="jogo.jogando">
-        <form *ngIf="perguntas.length">
+    <div class="perguntas">
+        <h1 *ngIf="jogo.respondendo">Guess the song</h1>
+        <div class="resposta" style="color: rgb(0, 139, 116)" *ngIf="respostaCerta">
+            <h5>Correct!</h5>
             <h1>{{pergunta.musica.nome.toUpperCase()}}</h1>
+            <p>{{jogo.acertos}} / {{perguntas.length}}</p>
+        </div>
+        <div class="resposta" style="color: crimson" *ngIf="jogo.perdedor">
+            <h5>The answer was</h5>
+            <h1>{{pergunta.musica.nome.toUpperCase()}}</h1>
+            <p>{{jogo.acertos}} / {{perguntas.length}}</p>
+        </div>
 
-            <div class="alternativas" *ngFor="let alternativa of pergunta.alternativas">
-                <input [formControl]="respostaInput" type="radio" name="alternativa" [value]="alternativa.id" [id]="+alternativa.id+'_'+pergunta.musica.id">
-                <label [for]="+alternativa.id+'_'+pergunta.musica.id">{{alternativa.nome}}</label>
+        <div class="ganhador" style="margin: 0; color: rgb(0, 139, 116);" *ngIf="jogo.ganhador">
+            <h2>GOD GAMER!</h2>
+        </div>
+        
+        <form class="form" *ngIf="perguntas.length">
+
+            <div class="alternativas" *ngIf="jogo.respondendo">
+                <div class="alternativa"  *ngFor="let alternativa of pergunta.alternativas">
+                    <input  [formControl]="respostaInput" type="radio" [value]="alternativa.id" [id]="+alternativa.id+'_'+pergunta.musica.id">
+                    <label [for]="+alternativa.id+'_'+pergunta.musica.id">{{alternativa.nome}}</label>
+                </div>
             </div>
+            <div [ngClass]="[jogo.perdedor ? 'alternativa-resposta errado' : 'alternativa-resposta certo']" *ngIf="!jogo.respondendo">
+                <input id="resposta" type="radio" checked>
+                <label for="resposta" >{{resposta.nome}}</label>
+            </div>
+            
         </form>
-        <button (click)="responder()">Próxima</button>
-        <button (click)="recomecar()">Home</button>
+
+        <button (click)="responder()" [disabled]="!isRespostaValid()" *ngIf="jogo.respondendo" class="btn btn-medium">Answer</button>
+        <button (click)="recomecar()" class="btn btn-medium" *ngIf="jogo.perdedor || jogo.ganhador">Replay</button>
+        <button (click)="nextPergunta()" *ngIf="!jogo.respondendo && respostaCerta && !jogo.ganhador" class="btn btn-medium">Next -></button>
     </div>
     <div class="separator">
         <img src="../../../assets/separatorLight.png" class="separator-img">

@@ -7,7 +7,7 @@ import { delay } from 'rxjs';
 export class AudioService {
 
   private audio = new Audio();
-  private DEFAULT_VOLUME = .05;
+  private DEFAULT_VOLUME = .2;
   private playing: boolean = false;
 
   constructor() { }
@@ -37,7 +37,6 @@ export class AudioService {
   }
 
   playNext(src: string) {
-    this.setInitialConfigs();
     this.audio.load();
     this.setAudioSrc(src);
     this.playAudio();
@@ -61,10 +60,8 @@ export class AudioService {
   }
 
   playAudio() {
-    setTimeout(() => {
-      this.audio.play();
-      this.playing = true;
-    }, 1500)
+    this.audio.play();
+    this.playing = true;
   }
 
   pauseAudio() {

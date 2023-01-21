@@ -13,8 +13,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.audioService.setInitialConfigs();
     this.audioService.setAudioSrc("http://localhost:8080/musicas/11/arquivo");
-    this.audioService.playAudio();
-    this.audioService.setLoop(true);
+    // this.audioService.playAudio();
+    // this.audioService.setLoop(true);
   }
 
   mute() {
