@@ -1,13 +1,25 @@
 <div class="container">
-    <div class="div" *ngIf="!jogando">
+    <div class="div" *ngIf="!jogo.jogando">
         <p>Você acertou {{index}} de {{perguntas.length}}.</p>
-        <p *ngIf="perdeu">Fail!</p>
-        <p *ngIf="ganhou">God Gamer!</p>
+        <p *ngIf="!jogo.ganhador">Fail!</p>
+        <p *ngIf="jogo.ganhador">God Gamer!</p>
         <button (click)="recomecar()">Play again?</button>
     </div>
 
+    <div class="controls">
+        <button (click)="handleClick()" class="btn-play-pause">
+            <span *ngIf="!isMusicaTocando()">Play</span>
+            <span *ngIf="isMusicaTocando()">Pause</span>
+        </button>
+        <div class="volume-slider">
+            <input class="range" type="range" min="0" max="1" step=".05" [value]="getDefaultVolume()" (input)="setVolume($event)">
+            <div class="progress" [style.width.%]="getVolume()"></div>
+        </div>
+    </div>
+    
 
-    <div class="perguntas" *ngIf="jogando">
+    
+    <div class="perguntas" *ngIf="jogo.jogando">
         <form *ngIf="perguntas.length">
             <h1>{{pergunta.musica.nome.toUpperCase()}}</h1>
 
@@ -16,7 +28,10 @@
                 <label [for]="+alternativa.id+'_'+pergunta.musica.id">{{alternativa.nome}}</label>
             </div>
         </form>
-        <button (click)="responder()" *ngIf="!isUltima()">Próxima</button>
-        
+        <button (click)="responder()">Próxima</button>
+        <button (click)="recomecar()">Home</button>
+    </div>
+    <div class="separator">
+        <img src="../../../assets/separatorLight.png" class="separator-img">
     </div>
 </div>

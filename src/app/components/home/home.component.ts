@@ -1,12 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AudioService } from 'src/app/audio/audio.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
-  constructor() {};
+  constructor(private audioService: AudioService) {};
+
+  ngOnInit(): void {
+    this.audioService.setInitialConfigs();
+    this.audioService.setAudioSrc("http://localhost:8080/musicas/11/arquivo");
+    this.audioService.playAudio();
+    this.audioService.setLoop(true);
+  }
+
+  mute() {
+    this.audioService.muteMusic();
+  }
 
 }
