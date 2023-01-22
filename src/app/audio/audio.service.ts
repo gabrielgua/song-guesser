@@ -45,6 +45,7 @@ export class AudioService {
   setInitialConfigs() {
     this.audio.volume = this.DEFAULT_VOLUME;
     this.audio.pause();
+    this.audio.loop = true;
   }
 
   setAudioSrc(src: string) {

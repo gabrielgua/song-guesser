@@ -92,6 +92,10 @@
     font-size: large;
 }
 
+.form > p {
+    margin-top: 0;
+}
+
 .perguntas {
     display: flex;
     flex-direction: column;
@@ -195,8 +199,6 @@
     background-color: rgb(0, 139, 116);
 }
 
-
-
 .separator {
     width: 100%;
     height: auto;
@@ -206,9 +208,5 @@
     max-width: 100%;
 }
 
-.btn-play-pause {
-    height: 10rem;
-    width: 10rem;
-    font-size: xx-large;
-}
+
 

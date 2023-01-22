@@ -4,6 +4,11 @@
     src: url('../src/assets/perpetua.ttf');
 }
 
+:root {
+    --success: rgb(0, 139, 116);
+    --error: crimson;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -24,6 +29,9 @@ h1, h2, h3, h4, h5 {
     text-transform: uppercase;
     transition: .2s;
     font-size: medium;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn:hover {
@@ -37,7 +45,35 @@ h1, h2, h3, h4, h5 {
     transform: scale(.95);
 }
 
+.btn-big {
+    width: 7rem;
+    height: 7rem;
+    font-size: larger;
+}
+
 .btn-medium {
     width: 5rem;
     height: 5rem;
 }
+
+.icon {
+    font-size: 48px;
+}
+
+.success-text {
+    color: var(--success);
+}
+
+.error-text {
+    color: var(--error);
+}
+
+.link {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+

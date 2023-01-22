@@ -11,10 +11,9 @@ export class HomeComponent implements OnInit {
   constructor(private audioService: AudioService) {};
 
   ngOnInit(): void {
-    this.audioService.setInitialConfigs();
+    this.audioService.init();
     this.audioService.setAudioSrc("http://localhost:8080/musicas/11/arquivo");
-    // this.audioService.playAudio();
-    // this.audioService.setLoop(true);
+    this.audioService.playAudio();
   }
 
   mute() {
