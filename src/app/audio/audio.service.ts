@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { delay } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,9 @@ export class AudioService {
   constructor() { }
 
   init(): void {
-    this.setInitialConfigs();
+    this.audio.volume = this.DEFAULT_VOLUME;
+    this.audio.loop = true;
+    this.audio.autoplay = true;
   }
 
   public getAudio() {
@@ -24,28 +25,21 @@ export class AudioService {
     return this.playing;
   }
 
-  public getDefaultVolume() {
-    return this.DEFAULT_VOLUME;
+  public isMuted() {
+    return this.audio.muted;
   }
 
   public getVolume() {
+    if (this.audio.muted) {
+      return 0;
+    }
     return this.audio.volume;
-  }
-
-  public setLoop(loop: boolean) {
-    return this.audio.loop = loop;
   }
 
   playNext(src: string) {
     this.audio.load();
     this.setAudioSrc(src);
     this.playAudio();
-  }
-
-  setInitialConfigs() {
-    this.audio.volume = this.DEFAULT_VOLUME;
-    this.audio.pause();
-    this.audio.loop = true;
   }
 
   setAudioSrc(src: string) {
@@ -56,11 +50,12 @@ export class AudioService {
     this.audio.volume = Number((ev.target as HTMLInputElement).value);
   }
 
-  muteMusic() {
+  muteAndUnmute() {
     this.audio.muted = !this.audio.muted;
   }
 
   playAudio() {
+
     this.audio.play();
     this.playing = true;
   }

@@ -40,12 +40,7 @@ export class PerguntaComponent implements OnInit{
 
   ngOnInit(): void {
     this.jogo.jogando = true;
-    this.audioService.init();
     this.getPerguntas();
-  }
-
-  isMusicaTocando(): boolean {
-    return this.audioService.isPlaying();
   }
 
   getPerguntas() {
@@ -71,31 +66,6 @@ export class PerguntaComponent implements OnInit{
         this.resposta = alternativa;
       }
     });
-  }
-
-
-  isResposta(alternativa: any) {
-    return this.pergunta.musica.id == alternativa.musicaId;
-  }
-
-  handleClick() {
-    if (!this.audioService.isPlaying()) {
-      this.audioService.playAudio();
-    } else {
-      this.audioService.pauseAudio();
-    }
-  }
-
-  setVolume(event: Event) {
-    this.audioService.setVolume(event);    
-  }
-
-  getDefaultVolume() {
-    return this.audioService.getDefaultVolume();
-  }
-
-  getVolume() {
-    return this.audioService.getVolume() * 100;
   }
 
   responder() {
@@ -150,6 +120,14 @@ export class PerguntaComponent implements OnInit{
     }
   }
 
+  handlePlayPause() {
+    if (!this.audioService.isPlaying()) {
+      this.audioService.playAudio();
+    } else {
+      this.audioService.pauseAudio();
+    }
+  }
+
   recomecar() {
     this.router.navigate(['home']);
     this.audioService.stopAudio();
@@ -157,6 +135,14 @@ export class PerguntaComponent implements OnInit{
 
   isRespostaValid(): boolean {
     return this.respostaInput.valid;
+  }
+
+  isMusicaTocando(): boolean {
+    return this.audioService.isPlaying();
+  }
+
+  isResposta(alternativa: any) {
+    return this.pergunta.musica.id == alternativa.musicaId;
   }
 
 }

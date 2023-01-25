@@ -1,0 +1,13 @@
+<div class="container">
+    <button class="btn-volume" (click)="handleMuteClick()">
+        <span class="material-symbols-rounded">
+            {{isMuted() ? 'volume_off' : 'volume_up'}}
+        </span>
+    </button>
+    <div class="volume-slider">
+        <input class="range" type="range" min="0" max="1" step=".05" [value]="getVolumeValue()" (input)="setVolume($event)">
+        <div class="bar">
+            <div class="progress" [style.width.%]="getVolumePercentage()"></div>
+        </div>
+    </div>
+</div>

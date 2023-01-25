@@ -6,18 +6,9 @@ import { AudioService } from 'src/app/audio/audio.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
   constructor(private audioService: AudioService) {};
 
-  ngOnInit(): void {
-    this.audioService.init();
-    this.audioService.setAudioSrc("http://localhost:8080/musicas/11/arquivo");
-    this.audioService.playAudio();
-  }
-
-  mute() {
-    this.audioService.muteMusic();
-  }
-
+ 
 }
