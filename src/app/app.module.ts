@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { PerguntaComponent } from './components/pergunta/pergunta.component';
 import { VolumeComponent } from './components/volume/volume.component';
+import { MusicaComponent } from './components/musica/musica.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { VolumeComponent } from './components/volume/volume.component';
     AppComponent,
     HomeComponent,
     PerguntaComponent,
-    VolumeComponent
+    VolumeComponent,
+    MusicaComponent
   ],
   imports: [
     BrowserModule,

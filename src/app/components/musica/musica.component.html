@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="titulo-e-menu">
+        <h1>Musicas</h1>
+        <button class="btn btn-small" title="Adicionar">
+            <span class="material-symbols-rounded">add</span>
+        </button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Arquivo</th>
+                <th>Tamanho</th>
+                <th>Tipo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let musica of musicas">
+                <td>{{musica.id}}</td>
+                <td>{{musica.nome}}</td>
+                <td>{{musica.arquivo.nomeArquivo}}</td>
+                <td>{{musica.arquivo.tamanho / 1000000}} MB</td>
+                <td>{{musica.arquivo.contentType}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <img src="../../../assets/separatorLight.png" style="width: 100%;">
+</div>

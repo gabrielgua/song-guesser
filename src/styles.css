@@ -56,6 +56,11 @@ h1, h2, h3, h4, h5 {
     height: 5rem;
 }
 
+.btn-small {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
 .icon {
     font-size: 48px;
 }
