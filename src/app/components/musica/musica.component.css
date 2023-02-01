@@ -5,32 +5,42 @@
     align-items: center;
     margin: auto;
     gap: 2rem;
-    padding-top: 10rem;
+    padding: 1rem;
 }
 
 .titulo-e-menu {
     width: 100%;
     display: flex;
-    align-items: flex-start;
     align-items: center;
-    gap: 5rem;
+    gap: 1rem;
 }
 
 h1 {
-    font-size: 48px;
+    margin: 0;
 }
 
 table {
     width: 100%;
-    padding: 1rem;
-    border: 1px solid whitesmoke;
-    max-height: 350px;
 }
 
+.table {
+    padding: 1rem;
+    border: 1px solid whitesmoke;
+}
 
-td, th {
-    padding: .25rem 1rem;
-    text-align: left;
+.table2 {
+    position: relative;
+    left: -2px;
+}
+
+table tr, td {
+    margin: 0;
+    padding: 0;
+}
+
+.scrollit {
+    overflow-y: scroll;
+    max-height: 450px;
 }
 
 thead > tr {
@@ -38,9 +48,47 @@ thead > tr {
     color: black;
 }
 
-tr:hover {
-    background-color: whitesmoke;
-    color: black;
+thead > tr > th {
+    text-align: left;   
+    padding: .25rem .5rem;
 }
+
+table > tr > td {
+    padding: .25rem .5rem;
+}
+
+.acoes {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+table > tr:hover > td {
+    background-color: crimson;
+}
+
+tr:hover > td > div > .btn-icon {
+    background-color: whitesmoke;
+}
+
+tr:hover > td > div > .btn-icon:active {
+    background-color: rgb(211, 211, 211);
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgb(41, 41, 41);
+    border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
+    background-color: whitesmoke;
+}
+
 
 

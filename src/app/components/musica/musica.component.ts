@@ -9,6 +9,7 @@ import { MusicaService } from './musica.service';
 export class MusicaComponent implements OnInit {
 
   musicas: any[] = [];
+  search: string = '';
 
   constructor(private musicaService: MusicaService) {}
 
@@ -16,6 +17,8 @@ export class MusicaComponent implements OnInit {
     this.musicaService.getAllMusicas()
       .then((musicas: any) => {
         this.musicas = musicas;
+        console.log(this.musicas);
+        
         
       }).catch((error: any) => {
         console.log(error);

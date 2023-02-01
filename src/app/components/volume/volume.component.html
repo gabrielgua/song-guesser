@@ -1,7 +1,7 @@
 <div class="container">
     <button class="btn-volume" (click)="handleMuteClick()">
         <span class="material-symbols-rounded">
-            {{isMuted() ? 'volume_off' : 'volume_up'}}
+            {{isMuted() || getVolumeValue() == 0 ? 'volume_off' : 'volume_up'}}
         </span>
     </button>
     <div class="volume-slider">

@@ -55,7 +55,7 @@
                 forward
             </span>
         </button>
-        <a class="link" routerLink="home" *ngIf="!jogo.perdedor">Home</a>
+        <a class="link" href="javascript:;" (click)="recomecar()" *ngIf="!jogo.perdedor">Home</a>
     </div>
     <div class="separator">
         <img src="../../../assets/separatorLight.png" class="separator-img">

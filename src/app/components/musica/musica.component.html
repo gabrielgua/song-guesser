@@ -1,29 +1,55 @@
 <div class="container">
     <div class="titulo-e-menu">
         <h1>Musicas</h1>
-        <button class="btn btn-small" title="Adicionar">
+        <button class="btn btn-small" title="Adicionar" style="margin-right: auto;">
             <span class="material-symbols-rounded">add</span>
         </button>
+        <div class="input-wrapper">
+            <span class="material-symbols-rounded">search</span>
+            <input class="input" type="text" placeholder="Buscar" [(ngModel)]="search">
+        </div>
     </div>
-    <table>
+    <table class="table">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Nome</th>
-                <th>Arquivo</th>
-                <th>Tamanho</th>
-                <th>Tipo</th>
+                <th width="20" style="text-align: center; border-radius: .25rem 0 0 .25rem;">#</th>
+                <th width="200">Nome</th>
+                <th width="200">Arquivo</th>
+                <th width="100">Tamanho</th>
+                <th style="border-radius: 0 .25rem .25rem 0;">Ações</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let musica of musicas">
-                <td>{{musica.id}}</td>
-                <td>{{musica.nome}}</td>
-                <td>{{musica.arquivo.nomeArquivo}}</td>
-                <td>{{musica.arquivo.tamanho / 1000000}} MB</td>
-                <td>{{musica.arquivo.contentType}}</td>
+            <tr>
+                <td colspan="5">
+                    <div class="scrollit">
+                        <table class="table2">
+                            <tr *ngFor="let musica of musicas | filter: search">
+                                <td width="20" style="text-align: center; border-radius: .3rem 0 0 .3rem;">{{musica.id}}</td>
+                                <td width="200">{{musica.nome}}</td>
+                                <td width="200" style="text-transform: none;">
+                                    <a href="{{musica.diretorio}}" target="_blank" class="link">{{musica.arquivo?.nomeArquivo}}</a>
+                                </td>
+                                <td width="100">{{musica.arquivo?.tamanho / 1000000 | number }}Mb</td>
+                                <td style="border-radius: 0 .3rem .3rem 0;">
+                                    <div class="acoes">
+                                        <button class="btn btn-small" >
+                                            <span class="material-symbols-rounded">edit</span>
+                                        </button>
+                                        <button class="btn btn-small" >
+                                            <span class="material-symbols-rounded">{{musica.arquivo ? 'file_present' : 'attach_file_add'}}</span>
+                                        </button>
+                                        <button class="btn btn-small btn-icon" style="color: crimson;">
+                                            <span class="material-symbols-rounded">delete</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
             </tr>
         </tbody>
     </table>
-    <img src="../../../assets/separatorLight.png" style="width: 100%;">
+    <img src="../../../assets/separatorLight.png" style="width: 80%;">
 </div>

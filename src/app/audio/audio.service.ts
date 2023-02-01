@@ -55,7 +55,6 @@ export class AudioService {
   }
 
   playAudio() {
-
     this.audio.play();
     this.playing = true;
   }

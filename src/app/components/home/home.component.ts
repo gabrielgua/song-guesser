@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { AudioService } from 'src/app/audio/audio.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +7,7 @@ import { AudioService } from 'src/app/audio/audio.service';
 })
 export class HomeComponent {
 
-  constructor(private audioService: AudioService) {};
+  constructor() {};
 
  
 }

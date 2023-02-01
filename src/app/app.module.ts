@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PerguntaComponent } from './components/pergunta/pergunta.component';
 import { VolumeComponent } from './components/volume/volume.component';
 import { MusicaComponent } from './components/musica/musica.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { MusicaComponent } from './components/musica/musica.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

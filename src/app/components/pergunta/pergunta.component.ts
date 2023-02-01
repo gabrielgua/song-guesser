@@ -47,6 +47,8 @@ export class PerguntaComponent implements OnInit{
     this.perguntaService.gerarPerguntas()
     .then((perguntas: Pergunta[]) => {
       this.perguntas = perguntas;
+      console.log(this.perguntas);
+      
       this.selectPergunta(this.index);      
     }).catch((error: any) => {
       console.log('Erro ao gerar as perguntas!');
@@ -129,8 +131,8 @@ export class PerguntaComponent implements OnInit{
   }
 
   recomecar() {
-    this.router.navigate(['home']);
     this.audioService.stopAudio();
+    this.router.navigate(['home']);
   }
 
   isRespostaValid(): boolean {
