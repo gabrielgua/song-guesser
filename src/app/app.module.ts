@@ -4,6 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +15,8 @@ import { PerguntaComponent } from './components/pergunta/pergunta.component';
 import { VolumeComponent } from './components/volume/volume.component';
 import { MusicaComponent } from './components/musica/musica.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { MusicaDialogComponent } from './components/musica/musica-dialog/musica-dialog.component';
+
 
 
 @NgModule({
@@ -20,7 +25,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     HomeComponent,
     PerguntaComponent,
     VolumeComponent,
-    MusicaComponent
+    MusicaComponent,
+    MusicaDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +34,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -8,6 +8,7 @@
             <span class="material-symbols-rounded">search</span>
             <input class="input" type="text" placeholder="Buscar" [(ngModel)]="search">
         </div>
+        
     </div>
     <table class="table">
         <thead>
@@ -33,13 +34,13 @@
                                 <td width="100">{{musica.arquivo?.tamanho / 1000000 | number }}Mb</td>
                                 <td style="border-radius: 0 .3rem .3rem 0;">
                                     <div class="acoes">
-                                        <button class="btn btn-small" >
+                                        <button class="btn btn-small" title="Editar" (click)="openFormDialogEdit(musica.id, musica.nome)">
                                             <span class="material-symbols-rounded">edit</span>
                                         </button>
-                                        <button class="btn btn-small" >
+                                        <button class="btn btn-small" title="Arquivo">
                                             <span class="material-symbols-rounded">{{musica.arquivo ? 'file_present' : 'attach_file_add'}}</span>
                                         </button>
-                                        <button class="btn btn-small btn-icon" style="color: crimson;">
+                                        <button class="btn btn-small btn-icon" style="color: crimson;" title="Remover">
                                             <span class="material-symbols-rounded">delete</span>
                                         </button>
                                     </div>
@@ -52,4 +53,5 @@
         </tbody>
     </table>
     <img src="../../../assets/separatorLight.png" style="width: 80%;">
+
 </div>

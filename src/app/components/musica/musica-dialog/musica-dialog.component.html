@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="dialog-box">
+        <form>
+            <div class="titulo-close">
+                <h1>Editar</h1>
+                <button class="btn btn-small btn-icon" style="color: whitesmoke;" (click)="onNoClick()">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+            <div class="input-and-btn">
+                <div class="input-wrapper">
+                    <h3>#{{data.id}}</h3>
+                    <input type="text" class="input" [value]="data.nome" placeholder="Nome">
+                    
+                </div> 
+                <button class="btn btn-small">
+                    <span class="material-symbols-rounded">done</span>
+                </button> 
+            </div>
+        </form>
+    </div>
+</div>
