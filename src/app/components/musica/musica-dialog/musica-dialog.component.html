@@ -2,18 +2,18 @@
     <div class="dialog-box">
         <form>
             <div class="titulo-close">
-                <h1>Editar</h1>
-                <button class="btn btn-small btn-icon" style="color: whitesmoke;" (click)="onNoClick()">
+                <h1>{{data.id ? 'Editar' : 'Adicionar'}}</h1>
+                <button type="button" class="btn btn-small btn-icon" style="color: whitesmoke;" (click)="onNoClick()">
                     <span class="material-symbols-rounded">close</span>
                 </button>
             </div>
             <div class="input-and-btn">
                 <div class="input-wrapper">
                     <h3>#{{data.id}}</h3>
-                    <input type="text" class="input" [value]="data.nome" placeholder="Nome">
+                    <input type="text" class="input" [formControl]="nome" placeholder="Nome">  
                     
                 </div> 
-                <button class="btn btn-small">
+                <button type="submit" class="btn btn-small {{!isValid() ? 'btn-disabled' : ''}}" [mat-dialog-close]="nome.value" [disabled]="!isValid()">
                     <span class="material-symbols-rounded">done</span>
                 </button> 
             </div>

@@ -70,6 +70,7 @@ export class PerguntaComponent implements OnInit{
     });
   }
 
+
   responder() {
     if (this.isRespostaValid()) {
       
@@ -146,6 +147,8 @@ export class PerguntaComponent implements OnInit{
   isResposta(alternativa: any) {
     return this.pergunta.musica.id == alternativa.musicaId;
   }
+
+
 
 }
 

@@ -25,6 +25,7 @@ export class AudioService {
     return this.playing;
   }
 
+
   public isMuted() {
     return this.audio.muted;
   }

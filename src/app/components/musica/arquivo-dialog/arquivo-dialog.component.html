@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="dialog-box">
+        <form>
+            <div class="titulo-close">
+                <h1>Arquivo</h1>
+                
+                <button type="button" class="btn btn-small btn-icon" style="color: whitesmoke;" (click)="onNoClick()">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+            <div *ngIf="data.nome" class="musica-desc">
+                <span class="material-symbols-rounded" style="color: whitesmoke;">music_note</span>
+                <p class="text-secondary" style="margin: 0;"><b>{{data.nome}}</b></p>
+            </div>
+            <div class="input-and-btn">
+                <div class="arquivo-wrapper">
+                    <input id="arquivo" style="display: none;" type="file" (change)="getFile($event)" [formControl]="fileControl"> 
+                    <div class="filename">
+                        <span class="material-symbols-rounded" style="color: whitesmoke;">attach_file</span>
+                        <p class="{{data.nomeArquivo || file.name != 'File' ? 'text-secondary' : 'text-disabled'}}">{{nomeArquivo}}</p>
+                    </div> 
+
+                    <label class="link" for="arquivo">Choose File</label>
+                </div>
+                <button type="submit" [mat-dialog-close]="file" class="btn btn-small {{fileControl.invalid ? 'btn-disabled' : ''}}" [disabled]="fileControl.invalid">
+                    <span class="material-symbols-rounded">done</span>
+                </button> 
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="titulo-e-menu">
         <h1>Musicas</h1>
-        <button class="btn btn-small" title="Adicionar" style="margin-right: auto;">
+        <button class="btn btn-small" title="Adicionar" style="margin-right: auto;" (click)="openFormDialogAdd()">
             <span class="material-symbols-rounded">add</span>
         </button>
         <div class="input-wrapper">
@@ -26,7 +26,7 @@
                     <div class="scrollit">
                         <table class="table2">
                             <tr *ngFor="let musica of musicas | filter: search">
-                                <td width="20" style="text-align: center; border-radius: .3rem 0 0 .3rem;">{{musica.id}}</td>
+                                <td width="20.4" style="text-align: center; border-radius: .3rem 0 0 .3rem;">{{musica.id}}</td>
                                 <td width="200">{{musica.nome}}</td>
                                 <td width="200" style="text-transform: none;">
                                     <a href="{{musica.diretorio}}" target="_blank" class="link">{{musica.arquivo?.nomeArquivo}}</a>
@@ -37,10 +37,10 @@
                                         <button class="btn btn-small" title="Editar" (click)="openFormDialogEdit(musica.id, musica.nome)">
                                             <span class="material-symbols-rounded">edit</span>
                                         </button>
-                                        <button class="btn btn-small" title="Arquivo">
+                                        <button class="btn btn-small" title="Arquivo" (click)="openFormDialogArquivo(musica)">
                                             <span class="material-symbols-rounded">{{musica.arquivo ? 'file_present' : 'attach_file_add'}}</span>
                                         </button>
-                                        <button class="btn btn-small btn-icon" style="color: crimson;" title="Remover">
+                                        <button class="btn btn-small btn-icon" style="color: crimson;" title="Remover" (click)="remover(musica.id)">
                                             <span class="material-symbols-rounded">delete</span>
                                         </button>
                                     </div>

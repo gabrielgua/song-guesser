@@ -6,6 +6,8 @@
 :root {
     --success: rgb(0, 139, 116);
     --error: crimson;
+    --btn-disabled: rgb(72, 72, 72);
+    --btn-active: rgb(211, 211, 211);
 }
 
 * {
@@ -27,6 +29,14 @@ h1, h2, h3, h4, h5 {
     margin: 0;
 }
 
+.text-disabled {
+    color: var(--btn-disabled);
+}
+
+.text-secondary {
+    color: var(--btn-active);
+}
+
 .btn {
     border: none;
     border-radius: 50%;
@@ -46,7 +56,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .btn:active {
-    background-color: rgb(211, 211, 211);
+    background-color: var(--btn-active);
     transform: scale(.95);
 }
 
@@ -68,6 +78,22 @@ h1, h2, h3, h4, h5 {
 
 .btn-icon {
     background-color: transparent;
+}
+
+.btn-icon:active {
+    color: var(--btn-active);
+    background-color: transparent;
+}
+
+.btn-disabled:hover {
+    transform: scale(1);
+    cursor: default;
+}
+
+.btn-disabled:active {
+    transform: scale(1);
+    cursor: default;
+    background-color: var(--btn-disabled);
 }
 
 .icon {
@@ -118,11 +144,11 @@ h1, h2, h3, h4, h5 {
 
 .mat-mdc-dialog-container
 .mdc-dialog__surface {
+    border: 1px solid whitesmoke;
     border-radius: 0 !important;
-    background-color: rgba(0, 0, 0, .9) !important;
+    background-color: black !important;
     border-radius: 1;
     padding: 1rem;
-
 }
 
 
