@@ -17,6 +17,7 @@ import { MusicaComponent } from './components/musica/musica.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MusicaDialogComponent } from './components/musica/musica-dialog/musica-dialog.component';
 import { ArquivoDialogComponent } from './components/musica/arquivo-dialog/arquivo-dialog.component';
+import { AlternativaDialogComponent } from './components/musica/alternativa-dialog/alternativa-dialog.component';
 
 
 
@@ -28,7 +29,8 @@ import { ArquivoDialogComponent } from './components/musica/arquivo-dialog/arqui
     VolumeComponent,
     MusicaComponent,
     MusicaDialogComponent,
-    ArquivoDialogComponent
+    ArquivoDialogComponent,
+    AlternativaDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="dialog-box">
+        <form>
+            <div class="titulo-close">
+                <h1>Alternativa</h1>
+                
+                <button type="button" class="btn btn-small btn-icon" style="color: whitesmoke;" (click)="onNoClick()">
+                    <span class="material-symbols-rounded">close</span>
+                </button>
+            </div>
+            <div class="musica-desc">
+                <span class="material-symbols-rounded" style="color: whitesmoke;">music_note</span>
+                <p class="text-secondary" style="margin: 0;"><b>{{data.musicaNome}}</b></p>
+            </div>
+            <div class="input-and-btn">
+                <div class="input-wrapper">
+                    <h3>#{{data.id}}</h3>
+                    <input type="text" class="input" [formControl]="nome" placeholder="Nome">  
+                    
+                </div> 
+                <button type="submit" class="btn btn-small {{!isValid() ? 'btn-disabled' : ''}}" [mat-dialog-close]="nome.value" [disabled]="!isValid()">
+                    <span class="material-symbols-rounded">done</span>
+                </button> 
+                <button *ngIf="data.id" type="submit" [mat-dialog-close]="true" class="btn btn-small btn-icon" title="Remover">
+                    <span class="material-symbols-rounded" style="color: crimson">delete</span>
+                </button> 
+            </div>
+        </form>
+    </div>
+</div>

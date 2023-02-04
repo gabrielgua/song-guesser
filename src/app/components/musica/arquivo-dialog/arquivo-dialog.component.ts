@@ -11,7 +11,6 @@ import { MusicaDialogComponent, MusicaData } from '../musica-dialog/musica-dialo
 export class ArquivoDialogComponent {
 
   file = File;
-  arquivo: any;
   nomeArquivo = this.getNomeArquivo();
   fileControl = new FormControl(null, [Validators.required]);
 
