@@ -58,7 +58,7 @@ export class PerguntaComponent implements OnInit{
 
   selectPergunta(index: number) {
     this.pergunta = this.perguntas[index];
-    this.audioService.playNext(this.pergunta.musica.diretorio);
+    this.audioService.playNext(this.pergunta.musica.arquivoDiretorio);
     this.jogo.respondendo = true;
   }
 
