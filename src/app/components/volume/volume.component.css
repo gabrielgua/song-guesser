@@ -27,7 +27,7 @@
     width: 5rem;
     height: .25rem;
     appearance: none;
-    background-color: rgb(41, 41, 41);
+    background-color: var(--slider-background);
     outline: none;
     border-radius: 1rem;
     cursor: pointer;

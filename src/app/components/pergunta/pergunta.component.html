@@ -22,7 +22,7 @@
             <p>{{jogo.acertos}} / {{perguntas.length}}</p>
         </div>
 
-        <div class="ganhador success-text" style="margin: 0;" *ngIf="jogo.ganhador">
+        <div class="ganhador text-success" style="margin: 0;" *ngIf="jogo.ganhador">
             <h2>GOD GAMER!</h2>
         </div>
         
@@ -34,7 +34,7 @@
                     <label [for]="+alternativa.id+'_'+pergunta.musica.id">{{alternativa.nome}}</label>
                 </div>
             </div>
-            <p *ngIf="!jogo.respondendo" [ngClass]="[jogo.perdedor ? 'error-text' : 'success-text']">You answered</p>
+            <p *ngIf="!jogo.respondendo" [ngClass]="[jogo.perdedor ? 'text-error' : 'text-success']">You answered</p>
             <div [ngClass]="[jogo.perdedor ? 'alternativa-resposta errado' : 'alternativa-resposta certo']" *ngIf="!jogo.respondendo">
                 <input id="resposta" type="radio" checked>
                 <label for="resposta" >{{resposta.nome}}</label>

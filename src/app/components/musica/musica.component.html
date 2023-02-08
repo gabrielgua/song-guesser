@@ -38,9 +38,16 @@
                                     </div>
                                 </td>
                                 <td width="160" style="text-transform: none; word-break: break-all;">
-                                    <a href="{{musica.arquivo?.diretorio}}" target="_blank" class="link">{{musica.arquivo?.nomeArquivo || '--'}}</a>
+                                    <div *ngIf="musica.uploading" class="upload-progress">
+                                        <mat-progress-bar style="max-width: 75%;" mode="determinate" [value]="musica.uploadProgress"></mat-progress-bar>
+                                        <p>{{musica.uploadProgress}}%</p>
+                                    </div>
+                                    <a *ngIf="!musica.uploading" [href]="musica.arquivo?.diretorio" target="_blank" class="link">{{musica.arquivo?.nomeArquivo || '--'}}</a>
                                 </td>
-                                <td width="80">{{musica.arquivo?.tamanho / 1000000 | number }}Mb</td>
+                                
+                                <td width="80">
+                                    <p>{{(musica.arquivo?.tamanho / 1000000).toFixed(1)}} MB</p>
+                                </td>
                                 <td style="border-radius: 0 .3rem .3rem 0;">
                                     <div class="acoes">
                                         <button class="btn btn-small" title="Editar" (click)="openFormDialogEdit(musica.id, musica.nome)">

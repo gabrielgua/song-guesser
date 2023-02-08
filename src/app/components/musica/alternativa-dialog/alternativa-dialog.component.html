@@ -21,7 +21,7 @@
                 <button type="submit" class="btn btn-small {{!isValid() ? 'btn-disabled' : ''}}" [mat-dialog-close]="nome.value" [disabled]="!isValid()">
                     <span class="material-symbols-rounded">done</span>
                 </button> 
-                <button *ngIf="data.id" type="submit" [mat-dialog-close]="true" class="btn btn-small btn-icon" title="Remover">
+                <button *ngIf="data.id" [mat-dialog-close]="true" class="btn btn-small btn-icon" title="Remover">
                     <span class="material-symbols-rounded" style="color: crimson">delete</span>
                 </button> 
             </div>

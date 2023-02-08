@@ -8,6 +8,7 @@
     --error: crimson;
     --btn-disabled: rgb(72, 72, 72);
     --btn-active: rgb(211, 211, 211);
+    --slider-background: rgb(24, 24, 24);
 }
 
 * {
@@ -35,6 +36,14 @@ h1, h2, h3, h4, h5 {
 
 .text-secondary {
     color: var(--btn-active);
+}
+
+.text-success {
+    color: var(--success);
+}
+
+.text-error {
+    color: var(--error);
 }
 
 .btn {
@@ -100,13 +109,7 @@ h1, h2, h3, h4, h5 {
     font-size: 48px;
 }
 
-.success-text {
-    color: var(--success);
-}
 
-.error-text {
-    color: var(--error);
-}
 
 .link {
     text-decoration: none;
@@ -150,5 +153,10 @@ h1, h2, h3, h4, h5 {
     border-radius: 1;
     padding: 1rem;
 }
+
+
+
+
+
 
 

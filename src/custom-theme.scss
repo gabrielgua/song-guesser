@@ -6,20 +6,13 @@
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
 @include mat.core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
 $hollow-knight-song-guesser-primary: mat.define-palette(mat.$indigo-palette);
 $hollow-knight-song-guesser-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
-// The warn palette is optional (defaults to red).
 $hollow-knight-song-guesser-warn: mat.define-palette(mat.$red-palette);
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
 $hollow-knight-song-guesser-theme: mat.define-light-theme((
   color: (
     primary: $hollow-knight-song-guesser-primary,
@@ -28,8 +21,44 @@ $hollow-knight-song-guesser-theme: mat.define-light-theme((
   )
 ));
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
 @include mat.all-component-themes($hollow-knight-song-guesser-theme);
+
+//snackbar scss
+.snack-bar  {
+  border: .5px solid whitesmoke;
+  font-size: large;
+  font-weight: bold;
+  text-transform: none;
+
+}
+
+.mat-mdc-snack-bar-container {
+  &.snack-bar {
+    margin-bottom: 2rem;
+    --mdc-snackbar-container-color: transparent;
+    --mdc-snackbar-supporting-text-color: #fff;
+  }
+
+  &.snack-bar-success {
+    --mdc-snackbar-supporting-text-color: var(--success);
+    --mat-mdc-snack-bar-button-color: var(--success);
+  }
+
+  &.snack-bar-error {
+    --mdc-snackbar-supporting-text-color: var(--error);
+    --mat-mdc-snack-bar-button-color: var(--error);
+
+  }
+}
+
+//mat progress bar
+.mat-mdc-progress-bar {
+  border-radius: 1rem;
+  --mdc-linear-progress-active-indicator-color: crimson;
+
+  &.mat-mdc-progress-bar
+  .mdc-linear-progress__buffer-bar {
+    background-color: var(--slider-background);
+  }
+}
 

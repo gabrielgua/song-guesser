@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AudioService } from 'src/app/audio/audio.service';
 import { Pergunta } from 'src/app/models/pergunta';
 import { Resposta } from 'src/app/models/resposta';
+import { SnackBarService } from 'src/app/snackbar/snack-bar.service';
 import { PerguntaService } from './pergunta.service';
 
 
@@ -28,6 +29,7 @@ export class PerguntaComponent implements OnInit{
     ganhador: false,
     perdedor: false,
     respondendo: false,
+    modo: '',
   }
 
   respostaInput = new FormControl(null, [Validators.required]);
@@ -36,12 +38,15 @@ export class PerguntaComponent implements OnInit{
   constructor(
     private perguntaService: PerguntaService,
     private audioService: AudioService,
-    private router: Router) {};
+    private router: Router,
+    private alert: SnackBarService) {};
 
   ngOnInit(): void {
     this.jogo.jogando = true;
     this.getPerguntas();
   }
+
+
 
   getPerguntas() {
     this.perguntaService.gerarPerguntas()
@@ -51,8 +56,9 @@ export class PerguntaComponent implements OnInit{
       
       this.selectPergunta(this.index);      
     }).catch((error: any) => {
-      console.log('Erro ao gerar as perguntas!');
       console.log(error);
+      this.alert.abrirSnackBar('Erro ao gerar as perguntas.', 'error');
+      
     })
   }
 
@@ -69,7 +75,6 @@ export class PerguntaComponent implements OnInit{
       }
     });
   }
-
 
   responder() {
     if (this.isRespostaValid()) {
@@ -90,6 +95,7 @@ export class PerguntaComponent implements OnInit{
 
         }).catch((error: any) => {
           console.log('Erro ao tentar responder!');
+          this.alert.abrirSnackBar('Erro ao tentar responder.', 'error');
         })
     }
   }
