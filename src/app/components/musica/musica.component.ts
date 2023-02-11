@@ -9,6 +9,7 @@ import { MusicaService } from './musica.service';
 
 import { HttpEventType } from '@angular/common/http';
 import { Musica } from 'src/app/models/musica';
+import { AuthService } from 'src/app/auth/auth.service';
 
 export class MusicaRequest {
   nome!: string;
@@ -30,6 +31,7 @@ export class MusicaComponent implements OnInit {
 
   constructor(
     private musicaService: MusicaService,
+    private auth: AuthService, 
     private alternativaService: AlternativaService,
     private dialog: MatDialog,
     private alert: SnackBarService) {}
@@ -218,5 +220,9 @@ export class MusicaComponent implements OnInit {
         console.log(error);
         this.alert.abrirSnackBar(error.error.userMessage, 'error');
       })
+  }
+
+  logout() {
+    this.auth.logout();
   }
 }
