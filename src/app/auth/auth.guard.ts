@@ -11,13 +11,13 @@ export class AuthGuard implements CanActivate {
     constructor(private auth: AuthService, private router: Router) {}
     
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-        if (this.auth.isAcessTokenValido()) {
-            console.log('Token inválido, grando novo token...');
+        if (this.auth.isAcessTokenInvalido()) {
+            console.log('Token inválido, gerando novo token...');
             
             return this.auth.gerarAccessTokenByRefreshToken()
                 .then(() => {
-                    if (this.auth.isAcessTokenValido()) {
-                        this.router.navigate(['/login']);
+                    if (this.auth.isAcessTokenInvalido()) {
+                        this.auth.redirectToLogin();
                         return false;
                     }
 

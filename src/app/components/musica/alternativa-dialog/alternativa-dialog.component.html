@@ -15,7 +15,7 @@
             <div class="input-and-btn">
                 <div class="input-wrapper">
                     <h3>#{{data.id}}</h3>
-                    <input type="text" class="input" [formControl]="nome" placeholder="Nome">  
+                    <input type="text" class="input" [formControl]="nome" placeholder="Nome" autofocus>  
                     
                 </div> 
                 <button type="submit" class="btn btn-small {{!isValid() ? 'btn-disabled' : ''}}" [mat-dialog-close]="nome.value" [disabled]="!isValid()">

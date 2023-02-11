@@ -1,5 +1,16 @@
 <div class="container">
-    <button (click)="logout()">Logout</button>
+    <div class="header">
+        <div class="links">
+            <span class="material-symbols-rounded">undo</span>
+            <a routerLink="home" class="link" target="_blank" style="text-transform: none;">Home</a>
+        </div>
+        <div class="usuario">
+            <p style="text-transform: none;">{{usuario}}</p>
+            <button title="Sair" class="btn btn-icon" (click)="logout()">
+                <span class="material-symbols-rounded">logout</span>
+            </button>
+        </div>
+    </div>
     <div class="titulo-e-menu">
         <h1>Musicas</h1>
         <button class="btn btn-small" title="Adicionar" style="margin-right: auto;" (click)="openFormDialogAdd()">
@@ -29,7 +40,7 @@
                         <table class="table2">
                             <tr *ngFor="let musica of musicas | filter: search">
                                 <td width="20.4" style="text-align: center; border-radius: .3rem 0 0 .3rem;">{{musica.id}}</td>
-                                <td width="150">{{musica.nome}}</td>
+                                <td width="150" style="word-break: break-all;">{{musica.nome}}</td>
                                 <td width="200">
                                     <div class="alternativa-wrapper">
                                         <p style="max-width: 70%;">{{musica.alternativa?.nome || '--'}}</p>

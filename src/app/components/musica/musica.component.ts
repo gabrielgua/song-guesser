@@ -24,6 +24,7 @@ export class MusicaComponent implements OnInit {
 
   musicas: Musica[] = [];
   search: string = '';
+  usuario: any;
   
   dialogMusica!: MatDialogRef<MusicaDialogComponent>
   dialogArquivo!: MatDialogRef<ArquivoDialogComponent>
@@ -38,6 +39,8 @@ export class MusicaComponent implements OnInit {
 
   ngOnInit(): void {
     this.buscarMusicas();
+    this.auth.carregarToken();
+    this.usuario = this.auth.getUsuario();
   }
 
   buscarMusicas() {

@@ -17,9 +17,6 @@ export class AuthorizedComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: any) => {
       if (params.code) {
-        
-        
-    
         this.auth.gerarAccessToken(params.code, params.state)
           .then(() => {
             this.router.navigate(['musicas']);

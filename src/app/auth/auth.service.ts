@@ -14,12 +14,16 @@ export class AuthService {
   OAUTH_TOKEN_URL = environment.API_URL + '/oauth2/token';
   OAUTH_AUTHORIZE_URL = environment.API_URL + '/oauth2/authorize';
   JWT_PAYLOAD: any;
+  usuario: any;
   
   constructor(
     private http: HttpClient,
-    private jwtHelper: JwtHelperService
+    private jwtHelper: JwtHelperService,
   ) { }
 
+  public getUsuario() {
+    return this.usuario;
+  }
 
   redirectToLogin(): void {
     const state = this.gerarStringAleatoria(40);
@@ -76,6 +80,8 @@ export class AuthService {
       .then((response: any) => {
         this.armazenarAccessToken(response['access_token']);
         this.armazenarRefreshToken(response['refresh_token']);
+        this.limparStateECodeVerifier();
+
         return Promise.resolve();
       }).catch((error: any) => {
         console.error('Erro ao gerar token com code', error);
@@ -96,6 +102,7 @@ export class AuthService {
       .then((response: any) => {
         this.armazenarAccessToken(response['access_token']);
         this.armazenarRefreshToken(response['refresh_token']);
+        this.limparStateECodeVerifier();
         console.log('Novo Access Token gerado com Refresh Token');
         return Promise.resolve();
         
@@ -105,6 +112,11 @@ export class AuthService {
       })
       
     
+  }
+
+  private limparStateECodeVerifier(): void {
+    localStorage.removeItem('state');
+    localStorage.removeItem('codeVerifier')
   }
 
   public temPermissao(permissao: string): boolean {
@@ -123,6 +135,7 @@ export class AuthService {
 
   private armazenarAccessToken(token: string) {
     this.JWT_PAYLOAD = this.jwtHelper.decodeToken(token);
+    this.usuario = this.JWT_PAYLOAD.sub;
     localStorage.setItem('token', token);
   }
 
@@ -141,7 +154,7 @@ export class AuthService {
     this.JWT_PAYLOAD = null;
   }
 
-  public isAcessTokenValido() {
+  public isAcessTokenInvalido() {
     const token = localStorage.getItem('token');
     return !token || this.jwtHelper.isTokenExpired(token);
   }
