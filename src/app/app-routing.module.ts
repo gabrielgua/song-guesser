@@ -5,7 +5,6 @@ import { AuthorizedComponent } from './components/authorized/authorized.componen
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { MusicaComponent } from './components/musica/musica.component';
-import { NaoAutorizadoComponent } from './components/nao-autorizado/nao-autorizado.component';
 import { PerguntaComponent } from './components/pergunta/pergunta.component';
 
 const routes: Routes = [
@@ -14,7 +13,6 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'perguntas', component: PerguntaComponent},
   {path: 'musicas', component: MusicaComponent, canActivate: [AuthGuard]},
-  {path: 'nao-autorizado', component: NaoAutorizadoComponent},
 
 
   {path: '**', redirectTo: 'home', pathMatch: 'full'},

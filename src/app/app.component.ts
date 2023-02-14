@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,12 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'hollow-knight-song-guesser';
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private auth: AuthService) {}
 
   ngOnInit(): void {
-    // this.router.navigate(['']);
+    this.auth.carregarToken();
+    //this.router.navigate(['']);
   }
 }

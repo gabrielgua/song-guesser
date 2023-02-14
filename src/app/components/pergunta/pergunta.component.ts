@@ -52,7 +52,6 @@ export class PerguntaComponent implements OnInit{
     this.perguntaService.gerarPerguntas()
     .then((perguntas: Pergunta[]) => {
       this.perguntas = perguntas;
-      console.log(this.perguntas);
       
       this.selectPergunta(this.index);      
     }).catch((error: any) => {
@@ -153,9 +152,6 @@ export class PerguntaComponent implements OnInit{
   isResposta(alternativa: any) {
     return this.pergunta.musica.id == alternativa.musicaId;
   }
-
-
-
 }
 
 

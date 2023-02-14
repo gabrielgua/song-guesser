@@ -25,7 +25,6 @@ import { environment } from 'src/environments/environment';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { LoginComponent } from './components/login/login.component';
 import { AuthorizedComponent } from './components/authorized/authorized.component';
-import { NaoAutorizadoComponent } from './components/nao-autorizado/nao-autorizado.component';
 
 export function tokenGetter(): string {
   return localStorage.getItem('token')!;
@@ -43,7 +42,6 @@ export function tokenGetter(): string {
     AlternativaDialogComponent,
     LoginComponent,
     AuthorizedComponent,
-    NaoAutorizadoComponent,
   ],
   imports: [
     BrowserModule,
