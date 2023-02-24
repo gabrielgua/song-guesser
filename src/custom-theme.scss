@@ -62,3 +62,14 @@ $hollow-knight-song-guesser-theme: mat.define-light-theme((
   }
 }
 
+.mat-mdc-progress-spinner { 
+  --mdc-circular-progress-active-indicator-color: whitesmoke; 
+}
+
+.mdc-circular-progress__gap-patch {
+  width: 0 !important;
+  height: 0 !important;
+}
+
+
+

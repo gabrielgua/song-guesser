@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 
 
@@ -25,6 +26,9 @@ import { environment } from 'src/environments/environment';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { LoginComponent } from './components/login/login.component';
 import { AuthorizedComponent } from './components/authorized/authorized.component';
+import { LoaderComponent } from './components/shared/loader/loader.component';
+import { LoaderBtnInterceptor } from './components/shared/loader-btn-interceptor';
+import { LoaderInterceptor } from './components/shared/loader-interceptor';
 
 export function tokenGetter(): string {
   return localStorage.getItem('token')!;
@@ -42,6 +46,7 @@ export function tokenGetter(): string {
     AlternativaDialogComponent,
     LoginComponent,
     AuthorizedComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +59,7 @@ export function tokenGetter(): string {
     MatDialogModule,
     MatSnackBarModule,
     MatProgressBarModule,
+    MatProgressSpinnerModule,
     JwtModule.forRoot({
       config: {
         tokenGetter,
@@ -63,11 +69,22 @@ export function tokenGetter(): string {
     }),
   ],
   providers: [
-    JwtHelperService, {
+    JwtHelperService, 
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderBtnInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })

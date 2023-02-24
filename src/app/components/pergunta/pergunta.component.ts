@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AudioService } from 'src/app/audio/audio.service';
 import { Pergunta } from 'src/app/models/pergunta';
 import { Resposta } from 'src/app/models/resposta';
 import { SnackBarService } from 'src/app/snackbar/snack-bar.service';
+import { LoaderService } from '../shared/loader.service';
+import { PerguntaLoaderService } from '../shared/pergunta-loader.service';
 import { PerguntaService } from './pergunta.service';
 
 
@@ -22,6 +24,8 @@ export class PerguntaComponent implements OnInit{
   index: number = 0;
   respostaCerta: boolean = false;
   resposta: any;
+  isLoading = false;
+  initialLoading = false;
 
   jogo = {
     acertos: 0,
@@ -39,11 +43,23 @@ export class PerguntaComponent implements OnInit{
     private perguntaService: PerguntaService,
     private audioService: AudioService,
     private router: Router,
-    private alert: SnackBarService) {};
+    private alert: SnackBarService,
+    private perguntaLoader: PerguntaLoaderService,
+    private loaderGeral: LoaderService,
+    private changes: ChangeDetectorRef) {};
 
   ngOnInit(): void {
     this.jogo.jogando = true;
     this.getPerguntas();
+    this.load();
+    this.initialLoad();
+  }
+
+  initialLoad(): void {
+    this.loaderGeral.getIsLoading().subscribe((isLoading) => {
+      this.initialLoading = isLoading === true;
+      this.changes.detectChanges();
+    })
   }
 
 
@@ -151,6 +167,13 @@ export class PerguntaComponent implements OnInit{
 
   isResposta(alternativa: any) {
     return this.pergunta.musica.id == alternativa.musicaId;
+  }
+
+  load(): void {
+    this.perguntaLoader.getIsLoading().subscribe((isLoading) => {
+      this.isLoading = isLoading === true;
+      this.changes.detectChanges();
+    })
   }
 }
 
