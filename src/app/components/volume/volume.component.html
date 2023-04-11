@@ -1,5 +1,5 @@
 <div class="container">
-    <button class="btn-volume" (click)="handleMuteClick()">
+    <button class="btn btn-icon btn-volume" (click)="handleMuteClick()">
         <span class="material-symbols-rounded">
             {{isMuted() || getVolumeValue() == 0 ? 'volume_off' : 'volume_up'}}
         </span>
