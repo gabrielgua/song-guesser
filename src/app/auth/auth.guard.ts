@@ -11,12 +11,12 @@ export class AuthGuard implements CanActivate {
     constructor(private auth: AuthService, private router: Router) {}
     
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-        if (this.auth.isAcessTokenInvalido()) {
+        if (this.auth.isAccessTokenInvalido()) {
             console.log('Token inválido, gerando novo token...');
             
             return this.auth.gerarAccessTokenByRefreshToken()
                 .then(() => {
-                    if (this.auth.isAcessTokenInvalido()) {
+                    if (this.auth.isAccessTokenInvalido()) {
                         this.auth.redirectToLogin();
                         return false;
                     }
@@ -24,7 +24,6 @@ export class AuthGuard implements CanActivate {
                     return true;
                 })
         } else if (route.data['roles'] && !this.auth.temQualquerPermissao(route.data['roles'])) {
-            console.log(route.data['roles']);
             
             this.router.navigate(['/nao-autorizado']);
             return false;

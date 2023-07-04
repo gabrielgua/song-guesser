@@ -16,11 +16,11 @@ export class AuthInterceptor implements HttpInterceptor {
             !req.url.includes('/oauth2/token') 
             && !req.url.includes('/perguntas/gerar') 
             && !req.url.includes('/perguntas/responder') 
-            && this.auth.isAcessTokenInvalido()) {
+            && this.auth.isAccessTokenInvalido()) {
             return from(this.auth.gerarAccessTokenByRefreshToken())
                 .pipe(
                     mergeMap(() => {
-                        if (this.auth.isAcessTokenInvalido()) {
+                        if (this.auth.isAccessTokenInvalido()) {
                             throw new NotAuthenticatedError();
                         }
                         

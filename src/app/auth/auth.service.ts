@@ -154,15 +154,19 @@ export class AuthService {
     this.JWT_PAYLOAD = null;
   }
 
-  public isAcessTokenInvalido() {
+  public isAccessTokenInvalido() {
     const token = localStorage.getItem('token');
     return !token || this.jwtHelper.isTokenExpired(token);
   }
 
   public carregarToken() {
     const token = localStorage.getItem('token');
-    if (token) {
+    if (token && !this.jwtHelper.isTokenExpired(token)) {
       this.armazenarAccessToken(token);
+    } else {
+      this.limparAccessToken();
+      localStorage.clear();
+      this.redirectToLogin();
     }
   }
 
