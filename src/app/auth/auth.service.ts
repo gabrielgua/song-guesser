@@ -161,13 +161,9 @@ export class AuthService {
 
   public carregarToken() {
     const token = localStorage.getItem('token');
-    if (token && !this.jwtHelper.isTokenExpired(token)) {
+    if (token) {
       this.armazenarAccessToken(token);
-    } else {
-      this.limparAccessToken();
-      localStorage.clear();
-      this.redirectToLogin();
-    }
+    } 
   }
 
   private gerarStringAleatoria(tamanho: number): string {
