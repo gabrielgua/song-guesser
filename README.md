@@ -1,27 +1,30 @@
-# HollowKnightSongGuesser
+# Hollow Knight Song Guesser
+Simple song quiz game for Hollow Knight!
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.5.
+Here's the [live demo](https://song-guesser.vercel.app/).
 
-## Development server
+## Tecnologies used
+The tecnologies that where used to build the project.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Backend
+- Spring Boot and Java for the API.
+- MySQL for the database.
+- AWS S3 for the storage of the song files.
+- Railway for the deploy.
 
-## Code scaffolding
+### Frontend
+- Angular 15 for the UI.
+- Vercel for the deploy.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### More details
+#### Authentication and Authorization
+- The project has a panel with a table of all of the songs, that only admin users can access.
+- On the panel the admin can manage the song files, alternatives and correct answers for each song.
+![image](https://github.com/gabrielgua/song-guesser/assets/80653864/538e13a1-fe6b-4cfa-9963-b0182400bc00)
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
