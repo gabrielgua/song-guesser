@@ -162,6 +162,7 @@ export class AuthService {
   public carregarToken() {
     const token = localStorage.getItem('token');
     if (token) {
+      
       this.armazenarAccessToken(token);
     } 
   }
