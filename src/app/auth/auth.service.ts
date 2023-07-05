@@ -145,18 +145,22 @@ export class AuthService {
 
   public logout() {
     this.limparAccessToken();
-    localStorage.clear();
     window.location.href = environment.API_URL + '/logout?returnTo=' + environment.LOGOUT_REDIRECT_TO_URL;
   }
 
   public limparAccessToken() {
     localStorage.removeItem('token');
+    localStorage.clear();
     this.JWT_PAYLOAD = null;
   }
 
   public isAccessTokenInvalido() {
     const token = localStorage.getItem('token');
     return !token || this.jwtHelper.isTokenExpired(token);
+  }
+
+  public hasAccessToken() {
+    return localStorage.getItem('token') != null;
   }
 
   public carregarToken() {
