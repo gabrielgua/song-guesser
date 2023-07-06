@@ -33,8 +33,14 @@ export class AuthInterceptor implements HttpInterceptor {
                         return next.handle(req);
                     })
                 )
-        } else if (req.url.includes('/perguntas/gerar') && this.auth.hasAccessToken() && this.auth.isAccessTokenInvalido()) {
-            this.auth.limparAccessToken();
+        } else if ((req.url.includes('/perguntas/gerar') || req.url.includes('/perguntas/respoder')) && this.auth.hasAccessToken() && this.auth.isAccessTokenInvalido()) {
+            return from(this.auth.gerarAccessTokenByRefreshToken())
+                .pipe(
+                    mergeMap(() => {
+                        req = req.clone({ setHeaders: { Authorization: `Bearer ${localStorage.getItem('token')}`}})
+                        return next.handle(req);
+                    })
+                )
         }
         return next.handle(req);
     }
