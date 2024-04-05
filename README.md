@@ -6,15 +6,17 @@ Here's the [live demo](https://song-guesser.vercel.app/).
 ## Tecnologies used
 The tecnologies that where used to build the project.
 
-### Backend
+### Back-end
 - Spring Boot and Java for the API.
 - MySQL for the database.
 - AWS S3 for the storage of the song files.
 - Railway for the deploy.
+- Back-end [repo](https://github.com/gabrielgua/song-guesser-api).
 
-### Frontend
+### Front-end
 - Angular 15 for the UI.
 - Vercel for the deploy.
+- Front-end [repo](https://github.com/gabrielgua/song-guesser).
 
 ### More details
 #### Authentication and Authorization
